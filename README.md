@@ -11,32 +11,49 @@
 ## Architecture
 
 ```
-app/
-└── src/main/java/eu/ourmall/app/
-    ├── data/
-    │   ├── local/
-    │   │   ├── dao/          Room DAOs (CartDao, OrderDao, PromoDao)
-    │   │   ├── database/     OurMallDatabase (Room)
-    │   │   └── entity/       DB entities (CartItemEntity, OrderEntity)
-    │   ├── remote/
-    │   │   ├── api/          MockProductApi — simulates real API with delays/errors
-    │   │   └── dto/          Data Transfer Objects + ApiResponse wrapper
-    │   └── repository/       Repository implementations + Mappers
-    ├── domain/
-    │   ├── model/            Pure Kotlin domain models (Product, Cart, Order…)
-    │   ├── repository/       Repository interfaces
-    │   └── usecase/          One use case per action (GetProducts, AddToCart…)
-    ├── presentation/
-    │   ├── theme/            Material3 theme, colors, animations
-    │   ├── navigation/       NavGraph with animated transitions
-    │   ├── components/       Reusable UI components
-    │   └── screen/
-    │       ├── products/     ProductListScreen + ProductDetailScreen
-    │       ├── cart/         CartScreen
-    │       ├── checkout/     CheckoutScreen
-    │       └── order/        OrderListScreen + OrderDetailScreen
-    ├── di/                   Hilt DI module
-    └── util/                 Extension functions
+The Android app follows a clean architecture approach, structured into data, domain, and presentation layers for scalability and maintainability.
+
+Data Layer
+
+Local: Uses Room for local storage, including DAOs (CartDao, OrderDao, PromoDao), the database setup (OurMallDatabase), and entities such as CartItemEntity and OrderEntity.
+
+Remote: Contains API-related logic, including a mock product API that simulates real network behavior (delays and errors), along with DTOs and an ApiResponse wrapper.
+
+Repository: Implements data operations and handles mapping between data and domain models.
+
+Domain Layer
+
+Model: Contains pure Kotlin models such as Product, Cart, and Order.
+
+Repository: Defines interfaces for data operations.
+
+Use Case: Encapsulates business logic, with one use case per action (e.g., GetProducts, AddToCart).
+
+Presentation Layer
+
+Theme: Handles Material 3 theming, colors, and animations.
+
+Navigation: Manages navigation using a NavGraph with animated transitions.
+
+Components: Contains reusable UI components.
+
+Screens:
+
+Products: Product list and product detail screens.
+
+Cart: Cart screen.
+
+Checkout: Checkout screen.
+
+Order: Order list and order detail screens.
+
+Dependency Injection
+
+Uses Hilt for managing dependencies across the app.
+
+Utils
+
+Contains extension functions and helper utilities.
 
 
 ### Clean Architecture Layers
