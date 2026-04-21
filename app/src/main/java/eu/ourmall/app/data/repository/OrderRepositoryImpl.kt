@@ -118,7 +118,7 @@ class OrderRepositoryImpl @Inject constructor(
         }
     }
 
-    /** Cancel a single item — refund only that item, recalculate totals */
+    /** Cancel a single item — refund only that item, recalculate total */
     override suspend fun cancelOrderItem(orderId: String, itemId: String): Result<Order> {
         return try {
             delay(400)
