@@ -69,35 +69,36 @@ Architecture
 This project follows Clean Architecture with three distinct layers that have a strict one-way dependency rule.
 Presentation → Domain ← Data
 Domain sits in the middle and knows nothing about the other two layers. It contains only pure Kotlin — business models, repository interfaces, and use cases. Data implements those interfaces using Room and the mock API. Presentation holds the ViewModels and Compose screens, observing state via StateFlow.
-app/src/main/java/eu/ourmall/app/
-│
-├── data/
-│   ├── local/
-│   │   ├── dao/          CartDao, OrderDao, PromoDao
-│   │   ├── database/     OurMallDatabase
-│   │   └── entity/       CartItemEntity, OrderEntity
-│   ├── remote/
-│   │   ├── api/          MockProductApi
-│   │   └── dto/          DTOs + ApiResponse wrapper
-│   └── repository/       Implementations + Mappers
-│
-├── domain/
-│   ├── model/            Product, Cart, Order, …
-│   ├── repository/       Repository interfaces
-│   └── usecase/          GetProducts, AddToCart, …
-│
-├── presentation/
-│   ├── theme/            Material 3 theme + colors
-│   ├── navigation/       NavGraph with animated transitions
-│   ├── components/       Shared UI components
-│   └── screen/
-│       ├── products/     ProductListScreen, ProductDetailScreen
-│       ├── cart/         CartScreen
-│       ├── checkout/     CheckoutScreen
-│       └── order/        OrderListScreen, OrderDetailScreen
-│
-├── di/                   Hilt modules
-└── util/                 Extension functions
+
+**Project Structure**
+data/
+local/dao/ — CartDao, OrderDao, PromoDao
+local/database/ — OurMallDatabase
+local/entity/ — CartItemEntity, OrderEntity
+remote/api/ — MockProductApi
+remote/dto/ — DTOs + ApiResponse wrapper
+repository/ — Repository implementations + Mappers
+
+domain/
+
+model/ — Product, Cart, Order, …
+repository/ — Repository interfaces
+usecase/ — GetProducts, AddToCart, …
+
+presentation/
+
+theme/ — Material 3 theme + colors
+navigation/ — NavGraph with animated transitions
+components/ — Shared UI components
+screen/products/ — ProductListScreen, ProductDetailScreen
+screen/cart/ — CartScreen
+screen/checkout/ — CheckoutScreen
+screen/order/ — OrderListScreen, OrderDetailScreen
+
+Other
+
+di/ — Hilt modules
+util/ — Extension functions
 
 Libraries
 LibraryPurposeJetpack Compose BOM 2024.08Declarative UIHilt 2.51Dependency injectionRoom 2.6Local persistence — cart and ordersNavigation ComposeScreen routing with animated transitionsCoil 2.7Async image loadingCoroutines + FlowAsync operations and reactive stateGsonJSON serialisation for order storage
